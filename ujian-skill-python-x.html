@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ujian Skill Python – Kelas X</title>
+<style>
+:root{--bg:#0f1226;--card:#1a1f3d;--card2:#232950;--tx:#eef0ff;--mut:#9aa3d4;--pri:#7c5cff;--pri2:#38bdf8;--ok:#34d399;--bad:#fb7185;--warn:#fbbf24}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:radial-gradient(1200px 600px at 10% -10%,#2b2470 0,transparent 60%),radial-gradient(900px 500px at 100% 0,#0e4a6e 0,transparent 55%),var(--bg);color:var(--tx);min-height:100vh}
+header{padding:18px 16px 6px;text-align:center}
+h1{margin:0;font-size:clamp(20px,4vw,30px);background:linear-gradient(90deg,var(--pri2),var(--pri));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mut);font-size:13px;margin-top:4px}
+main{max-width:980px;margin:0 auto;padding:12px 14px 40px}
+.scr{display:none}.scr.on{display:block;animation:in .35s}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+.card{background:var(--card);border:1px solid #ffffff14;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 10px 30px #0006}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 6px}
+input[type=text],select,textarea.in{width:100%;padding:12px;border-radius:12px;border:1px solid #ffffff22;background:var(--card2);color:var(--tx);font-size:16px}
+button{cursor:pointer;border:0;border-radius:12px;padding:12px 18px;font-weight:700;font-size:15px;color:#fff;background:linear-gradient(135deg,var(--pri),var(--pri2));transition:.15s}
+button:hover{transform:translateY(-1px);filter:brightness(1.1)}button:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.run{background:linear-gradient(135deg,#10b981,#38bdf8)}.ghost{background:var(--card2);border:1px solid #ffffff22}.save{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.steps{display:flex;gap:6px;justify-content:center;margin:8px 0 14px;flex-wrap:wrap}
+.pill{font-size:12px;padding:5px 12px;border-radius:99px;background:var(--card2);color:var(--mut)}.pill.on{background:var(--pri);color:#fff}
+.ed{display:flex;height:300px;border-radius:12px;overflow:hidden;border:1px solid #ffffff22;background:#0b0e20;font:14px/21px ui-monospace,Menlo,Consolas,monospace}
+.gut{width:44px;padding:10px 0;text-align:right;color:#5b648f;background:#10142b;overflow:hidden;user-select:none;flex:none}
+.gut div{padding-right:10px;height:21px}.gut .e{background:var(--bad);color:#fff;font-weight:700}
+.ed textarea{flex:1;border:0;outline:0;resize:none;background:transparent;color:#e6e9ff;padding:10px;font:inherit;white-space:pre;overflow:auto;tab-size:4}
+.out{min-height:110px;border-radius:12px;padding:12px;background:#0b0e20;border:1px solid #ffffff22;font:14px/1.5 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+.okb{border-left:5px solid var(--ok)}.erb{border-left:5px solid var(--bad)}
+.hd{font-family:system-ui;font-weight:700;margin-bottom:6px}.ok{color:var(--ok)}.er{color:var(--bad)}
+.hint{font-family:system-ui;background:#fb71851c;border-radius:8px;padding:8px;margin:6px 0}
+.raw{font-size:12px;color:var(--mut)}
+pre.task{background:#0b0e20;padding:12px;border-radius:12px;overflow:auto;margin:8px 0;font-size:14px}
+.ti{background:transparent;border:0;outline:0;color:#7dd3fc;font:inherit;width:min(70%,320px);padding:0;caret-color:#7dd3fc}
+ol.task{background:#0b0e20;padding:12px 12px 12px 34px;border-radius:12px;line-height:1.7;margin:8px 0}
+.stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.stat span{background:var(--card2);padding:6px 12px;border-radius:99px;font-size:13px}
+#warn{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:9;padding:20px}
+#warn.on{display:flex}#warn .card{max-width:420px;text-align:center;border:2px solid var(--bad)}
+.big{font-size:54px}.notice{background:#fbbf2420;border:1px solid var(--warn);color:var(--warn);padding:8px 12px;border-radius:10px;font-size:13px;margin-bottom:10px}
+</style></head><body>
+<header><h1>🐍 Ujian Skill Python — Kelas X</h1><div class="sub">SMA IT Nurul Ilmi Jambi · Informatika</div></header>
+<main>
+<div class="steps"><span class="pill" id="p1">1 Registrasi</span><span class="pill" id="p2">2 Latihan</span><span class="pill" id="p3">3 Projek</span><span class="pill" id="p4">4 Selesai</span></div>
+
+<section class="scr" id="reg"><div class="card">
+<h2 style="margin-top:0">👋 Registrasi Peserta</h2>
+<div class="notice" id="demo" style="display:none">MODE UJI COBA: SHEETS_URL belum diisi, nilai belum terkirim ke Google Sheets.</div>
+<label>Nama lengkap (ketik sendiri)</label><input type="text" id="nm" placeholder="Contoh: Ahmad Fauzi" autocomplete="off">
+<label>Kelas</label><select id="kl"></select>
+<label style="display:flex;gap:8px;align-items:center;color:var(--tx)"><input type="checkbox" id="cf"> Nama dan kelas sudah benar (tidak bisa diubah)</label>
+<p class="raw">Periksa ejaan namamu. Nama ini yang masuk ke daftar nilai.</p>
+<button id="go">Mulai ➜</button></div></section>
+
+<section class="scr" id="lat">
+<div class="card"><h2 style="margin-top:0">🧪 Ruang Latihan</h2>
+<p class="raw">Coba kode apa saja di sini. Latihan <b>tidak dinilai</b> dan boleh berkali-kali. Kalau program memakai input(), ketik jawabanmu langsung di kotak Output (seperti terminal) lalu tekan Enter.</p>
+<div class="ed" id="e1"></div>
+<div class="row" style="margin-top:10px"><button class="run" id="r1">▶ Run</button><button class="ghost" id="toP">🎯 Masuk ke Projek (dinilai)</button></div></div>
+<div class="card"><b>Output (terminal)</b><div class="out" id="o1">Belum ada output. Tekan Run.</div></div></section>
+
+<section class="scr" id="proj">
+<div class="card"><h2 style="margin-top:0">🎯 Projek Penilaian</h2>
+<div class="stat"><span>👤 <b id="sn"></b></span><span>🔁 Percobaan: <b id="at">0</b></span><span>⚠️ Keluar halaman: <b id="vc">0</b></span></div>
+<p>Buat program Python sesuai instruksi berikut:</p>
+<ol class="task"><li>Tampilkan nama dan kelas antum dibarisan 1</li><li>Buatkan variabel <b>"nilai"</b> yang berisi <code>int(input("masukkan nilai: "))</code></li><li>Jika nilai lebih besar/sama dengan dari 80, maka tampilkan <b>"lulus"</b></li><li>Jika tidak, maka tampilkan <b>"tidak lulus"</b></li></ol>
+<p class="raw">Tempel (paste) dinonaktifkan: ketik sendiri. Setiap klik Run dihitung sebagai 1 percobaan. Jangan keluar dari halaman sebelum menyimpan.</p>
+<div class="ed" id="e2"></div>
+<div class="row" style="margin-top:10px"><button class="run" id="r2">▶ Run (dihitung percobaan)</button><button class="save" id="sv" style="display:none">💾 Simpan Hasil Akhir</button></div></div>
+<div class="card"><b>Output (terminal)</b><div class="out" id="o2">Belum ada output.</div></div></section>
+
+<section class="scr" id="fin"><div class="card" style="text-align:center">
+<div class="big">🎉</div><h2 style="margin:0">Hasilmu sudah disimpan!</h2>
+<p id="fs"></p><p>Kode bukti: <b id="pf" style="font-size:22px;color:var(--pri2)"></b></p>
+<p class="raw">Screenshot layar ini sebagai bukti.</p><p class="raw">Halaman kembali ke registrasi dalam <b id="cd">20</b> detik untuk peserta berikutnya.</p><button class="ghost" id="nx">Peserta berikutnya ➜</button></div></section>
+<p class="raw" style="text-align:center;margin-top:20px"><a href="#" class="rs" style="color:var(--mut)">Ganti peserta (PIN guru)</a></p></main>
+<div id="warn"><div class="card"><div class="big">🚨</div><h2>Terdeteksi keluar dari halaman ujian</h2><p id="wt"></p><p class="raw">Kejadian ini tercatat dan dilihat gurumu.</p><button id="wb">Kembali ke Ujian</button></div></div>
+
+<script>
+const SHEETS_URL="https://script.google.com/macros/s/AKfycbxjaiHjZ0F0JpqRM0Hs3xHvztPE9BKlpENNJHsnqmX-_TNxHv55SmEZKvJWBQr7IBOCqQ/exec"; // <-- tempel URL Web App Google Apps Script di sini
+const TEACHER_PIN="2468"; // <-- ganti PIN guru (untuk mengganti peserta)
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S=JSON.parse(localStorage.getItem('ujianX')||'null')||{};
+const store=()=>localStorage.setItem('ujianX',JSON.stringify(S));
+for(let i=1;i<=12;i++)$('#kl').insertAdjacentHTML('beforeend',`<option>X-E${i}</option>`);
+if(!SHEETS_URL)$('#demo').style.display='block';
+
+function show(id){document.querySelectorAll('.scr').forEach(x=>x.classList.toggle('on',x.id===id));
+ const n={reg:1,lat:2,proj:3,fin:4}[id];for(let i=1;i<=4;i++)$('#p'+i).classList.toggle('on',i===n);}
+
+function Editor(root,noPaste){
+ root.innerHTML='<div class="gut"></div><textarea spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off"></textarea>';
+ const g=root.firstChild,t=root.lastChild;let el=0;
+ const draw=()=>{const n=t.value.split('\n').length;let h='';for(let i=1;i<=n;i++)h+=`<div class="${i===el?'e':''}">${i}</div>`;g.innerHTML=h;g.scrollTop=t.scrollTop;};
+ const ins=s=>{t.setRangeText(s,t.selectionStart,t.selectionEnd,'end');t.dispatchEvent(new Event('input'));};
+ t.addEventListener('input',()=>{el=0;draw();});
+ t.addEventListener('scroll',()=>g.scrollTop=t.scrollTop);
+ t.addEventListener('keydown',e=>{
+  if(e.key==='Tab'){e.preventDefault();ins('    ');}
+  else if(e.key==='Enter'){e.preventDefault();const p=t.selectionStart,ls=t.value.lastIndexOf('\n',p-1)+1,ln=t.value.slice(ls,p);let ind=ln.match(/^ */)[0];if(/:\s*$/.test(ln))ind+='    ';ins('\n'+ind);}});
+ if(noPaste)['paste','drop','copy','cut','contextmenu'].forEach(v=>t.addEventListener(v,e=>e.preventDefault()));
+ draw();
+ return{get value(){return t.value},set value(v){t.value=v;draw();},mark(n){el=n;draw();},el:t};
+}
+const E1=Editor($('#e1'),false),E2=Editor($('#e2'),true);
+E1.value='print("Halo, Python!")\nnama = input("Siapa namamu? ")\nprint("Selamat belajar,", nama)';
+E2.el.addEventListener('input',()=>{S.code=E2.value;store();});
+
+/* ---------- Python (Pyodide) ---------- */
+let pyP=null,py=null;
+function loadPy(){
+ if(!pyP){pyP=(async()=>{
+  if(!window.loadPyodide)await new Promise((ok,no)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js';s.onload=ok;s.onerror=()=>no(new Error('x'));document.head.appendChild(s);});
+  py=await loadPyodide();
+  py.runPython('import builtins,sys\n_oi=builtins.input\ndef _inp(p=""):\n    sys.stdout.write(str(p))\n    sys.stdout.flush()\n    v=_oi()\n    sys.stdout.write(v+"\\n")\n    return v\nbuiltins.input=_inp');
+  return py;})();pyP.catch(()=>{pyP=null;});}
+ return Promise.race([pyP,new Promise((_,no)=>setTimeout(()=>no(new Error('t')),45000))]).catch(()=>{throw new Error('Mesin Python gagal dimuat (internet lambat atau diblokir). Muat ulang halaman atau ganti jaringan.');});
+}
+const dec=new TextDecoder();
+async function runPy(code,inputs){
+ const p=await loadPy();let i=0,out='',need=false,err=null;
+ const w={write:b=>{out+=dec.decode(b,{stream:true});return b.length;}};
+ p.setStdout(w);p.setStderr(w);
+ p.setStdin({stdin:()=>{if(i<inputs.length)return inputs[i++];need=true;return undefined;}});
+ try{await p.runPythonAsync(code,{globals:p.toPy({})});}catch(e){err=String(e.message||e);}
+ try{p.runPython('sys.stdout.flush()');}catch(e){}
+ return{out,err:need?null:err,need};
+}
+function explain(msg,code){
+ const m=[...msg.matchAll(/File "<exec>", line (\d+)/g)];const line=m.length?+m[0][1]:0;
+ const lines=msg.trim().split('\n');const last=lines[lines.length-1];const type=last.split(':')[0].trim();let h;
+ if(type==='IndentationError'||/expected an indented block|unexpected indent/.test(last))h='Indentasi (jorokan spasi) salah. Baris setelah <b>if</b> / <b>else</b> harus menjorok ke dalam dan sejajar.';
+ else if(type==='SyntaxError'){
+  if(/never closed/.test(last))h='Ada tanda kurung <b>(</b> yang belum ditutup <b>)</b>.';
+  else if(/unterminated string|EOL while/.test(last))h='Tanda kutip <b>"</b> belum ditutup.';
+  else if(/expected ':'/.test(last))h='Kurang tanda titik dua <b>:</b> di akhir baris if / else.';
+  else if(/invalid syntax/.test(last))h='Penulisan salah aturan. Cek ejaan perintah, tanda kurung, kutip, dan titik dua (:).';
+  else h='Penulisan kode salah aturan. Cek tanda baca di baris ini.';}
+ else if(type==='NameError'){const n=(last.match(/'(.+?)'/)||[])[1];h=`Nama <b>${esc(n||'')}</b> belum dibuat atau salah ketik. Huruf besar/kecil berpengaruh (print bukan Print).`;}
+ else if(type==='ValueError')h='int() hanya menerima <b>angka bulat</b>. Jawaban yang kamu ketik tidak boleh berupa huruf atau kosong.';
+ else if(type==='TypeError')h='Jenis data tidak cocok, misalnya angka dibandingkan dengan teks. Cek apakah sudah memakai int(input(...)).';
+ else h='Ada kesalahan saat program berjalan. Baca pesan Python di bawah.';
+ return{line,h,type,last,src:line?(code.split('\n')[line-1]||''):''};
+}
+function render(box,r,code){
+ box.className='out '+(r.err?'erb':'okb');box.textContent='';
+ const s=document.createElement('span');s.textContent=r.out;box.appendChild(s);
+ if(!r.err){box.insertAdjacentHTML('beforeend','<div class="hd ok" style="margin-top:8px">✅ Program selesai</div>');return 0;}
+ const x=explain(r.err,code);
+ box.insertAdjacentHTML('beforeend',`<div class="hd er" style="margin-top:8px">❌ Eror${x.line?' di baris '+x.line:''}</div>`+(x.line?`<div>${x.line} │ ${esc(x.src)}</div>`:'')+`<div class="hint">💡 ${x.h}</div><div class="raw">Pesan Python: ${esc(x.last)}</div>`);
+ return x.line;
+}
+function busy(btn,on,txt){btn.disabled=on;btn.textContent=on?'⏳ Memproses...':txt;}
+
+/* terminal interaktif: input diketik di kotak output, program dijalankan ulang tiap Enter */
+let runId=0,pend=null;
+async function session(code,box,edr){
+ const id=++runId;if(pend){pend(null);pend=null;}
+ const inputs=[];
+ for(;;){
+  const r=await runPy(code,inputs);
+  if(id!==runId)return null;
+  if(!r.need){const ln=render(box,r,code);if(ln)edr.mark(ln);return r;}
+  box.className='out';box.textContent='';box.appendChild(document.createTextNode(r.out));
+  const ti=document.createElement('input');ti.className='ti';ti.autocomplete='off';ti.spellcheck=false;
+  ti.setAttribute('autocapitalize','off');ti.setAttribute('autocorrect','off');box.appendChild(ti);ti.focus();
+  box.onclick=()=>ti.focus();
+  const v=await new Promise(res=>{pend=res;ti.onkeydown=e=>{if(e.key==='Enter')res(ti.value);};});
+  box.onclick=null;pend=null;
+  if(v===null||id!==runId)return null;
+  inputs.push(v);
+ }
+}
+
+$('#r1').onclick=async()=>{const b=$('#r1'),o=$('#o1');o.className='out';o.textContent='Menyiapkan mesin Python (pertama kali agak lama)...';busy(b,true);
+ try{await loadPy();}catch(e){o.textContent=e.message;busy(b,false,'▶ Run');return;}
+ busy(b,false,'▶ Run');await session(E1.value,o,E1);};
+
+/* ---------- Registrasi ---------- */
+$('#go').onclick=()=>{const n=$('#nm').value.trim().replace(/\s+/g,' ');
+ if(n.length<3)return alert('Tulis nama lengkapmu.');if(!$('#cf').checked)return alert('Centang konfirmasi nama dan kelas.');
+ S={nama:n,kelas:$('#kl').value,att:0,viol:[],t0:Date.now()};store();$('#sn').textContent=n+' · '+S.kelas;show('lat');};
+
+/* ---------- Projek + pengawasan ---------- */
+let inFS=false,last=0;
+function enterFS(){const d=document.documentElement;(d.requestFullscreen?d.requestFullscreen():Promise.resolve()).then(()=>inFS=true).catch(()=>{});}
+function updStat(){$('#at').textContent=S.att;$('#vc').textContent=S.viol.length;}
+$('#toP').onclick=()=>{if(!confirm('Masuk ke Projek? Setiap Run akan dihitung percobaan, dan keluar halaman akan tercatat.'))return;
+ S.started=true;S.tp=Date.now();store();$('#sn').textContent=S.nama+' · '+S.kelas;E2.value=S.code||'';updStat();show('proj');enterFS();};
+function viol(t){if(!$('#proj').classList.contains('on')||S.done)return;const n=Date.now();if(n-last<1500)return;last=n;
+ S.viol.push(t+' ('+new Date().toLocaleTimeString('id-ID')+')');store();updStat();$('#wt').textContent=t+'. Total tercatat: '+S.viol.length+' kali.';$('#warn').classList.add('on');}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)viol('Pindah tab / aplikasi');});
+window.addEventListener('blur',()=>viol('Jendela kehilangan fokus'));
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&inFS){inFS=false;viol('Keluar dari layar penuh');}});
+$('#wb').onclick=()=>{$('#warn').classList.remove('on');enterFS();};
+window.addEventListener('beforeunload',e=>{if(S.started&&!S.done){e.preventDefault();e.returnValue='';}});
+
+const TESTS=[['90','lulus'],['80','lulus'],['79','tidak lulus'],['50','tidak lulus']];
+async function verify(code){
+ if(!/int\s*\(\s*input\s*\(/.test(code))return'Gunakan int(input(...)) untuk membaca nilai.';
+ if(!/\bif\b/.test(code)||!/\belse\b/.test(code))return'Program harus memakai if dan else.';
+ const nm=S.nama.toLowerCase(),kl=S.kelas.toLowerCase();
+ for(const[i,exp]of TESTS){const r=await runPy(code,[i]);
+  if(r.err||r.need)return'Programmu eror atau meminta input lebih dari sekali saat diuji dengan nilai '+i+'.';
+  const o=r.out.split('\n').map(s=>s.trim()).filter(Boolean);
+  const first=(o[0]||'').toLowerCase();
+  if(!first.includes(nm)||!first.includes(kl))return'Baris pertama output harus berisi nama lengkap DAN kelasmu ('+S.kelas+') persis seperti saat registrasi.';
+  if(o[o.length-1].toLowerCase()!==exp)return`Untuk nilai ${i} hasil akhir seharusnya "${exp}", programmu mencetak "${o[o.length-1]}". Ingat: lulus jika nilai 80 atau lebih.`;}
+ return null;}
+
+const RT='▶ Run (dihitung percobaan)';
+$('#r2').onclick=async()=>{const b=$('#r2'),o=$('#o2'),c=E2.value;$('#sv').style.display='none';
+ o.className='out';o.textContent='Menyiapkan mesin Python...';busy(b,true);
+ try{await loadPy();}catch(e){o.textContent=e.message;busy(b,false,RT);return;}
+ busy(b,false,RT);S.att++;store();updStat();
+ const r=await session(c,o,E2),id=runId;
+ if(r&&!r.err){const bad=await verify(c);if(id!==runId)return;
+  if(bad)o.insertAdjacentHTML('beforeend',`<div class="hint">⚠️ Belum sesuai soal: ${esc(bad)}</div>`);
+  else{o.insertAdjacentHTML('beforeend','<div class="hd ok" style="margin-top:8px">🏆 Kodemu BENAR! Tekan Simpan untuk mengirim nilai.</div>');$('#sv').style.display='inline-block';S.ok=c;store();}}
+};
+
+$('#sv').onclick=async()=>{const b=$('#sv');if(!confirm('Simpan hasil akhir? Setelah ini kamu tidak bisa mengubahnya.'))return;
+ const proof=(Date.now().toString(36)+Math.random().toString(36).slice(2,5)).toUpperCase();
+ const p={nama:S.nama,kelas:S.kelas,percobaan:S.att,pelanggaran:S.viol.length,detail:S.viol.join(' | '),durasi:Math.round((Date.now()-S.tp)/60000),kode:S.ok,bukti:proof};
+ busy(b,true);
+ try{if(SHEETS_URL)await fetch(SHEETS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(p)});
+  S.done=true;S.proof=proof;store();if(document.fullscreenElement)document.exitFullscreen();finish();}
+ catch(e){alert('Gagal mengirim. Periksa internet lalu tekan Simpan lagi. Jangan tutup halaman!');busy(b,false,'💾 Simpan Hasil Akhir');}};
+let cdT=null;
+function resetAll(){clearInterval(cdT);S={};localStorage.removeItem('ujianX');if(document.fullscreenElement)document.exitFullscreen();location.reload();}
+$('#nx').onclick=resetAll;
+document.querySelectorAll('.rs').forEach(a=>a.onclick=e=>{e.preventDefault();if(prompt('Masukkan PIN guru untuk mengganti peserta:')===TEACHER_PIN)resetAll();else alert('PIN salah.');});
+function finish(){$('#fs').textContent=`${S.nama} (${S.kelas}) · ${S.att} percobaan`;$('#pf').textContent=S.proof;show('fin');
+ let n=20;$('#cd').textContent=n;clearInterval(cdT);cdT=setInterval(()=>{n--;$('#cd').textContent=n;if(n<=0)resetAll();},1000);}
+
+/* ---------- Pulihkan sesi ---------- */
+if(S.done)finish();
+else if(S.started){$('#sn').textContent=S.nama+' · '+S.kelas;E2.value=S.code||'';show('proj');updStat();viol('Halaman dimuat ulang / dibuka kembali');}
+else if(S.nama){$('#sn').textContent=S.nama+' · '+S.kelas;show('lat');}
+else show('reg');
+</script></body></html>
